@@ -56,43 +56,30 @@ public class MessageDaoJdbc {
         }
     }
 
-    public void addReferralMessage(int userId){
+    public int getUserIdByReferral(int referral) {
+        int userId = -1;
+
         Connection connection = DBConnection.connection;
         PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
         try {
-            String sql = "UPDATE public.user_vk SET number_of_messages = number_of_messages + 1 where referral = " + userId;
+            String sql = "SELECT user_id FROM public.user_vk WHERE referral = ?";
             preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, referral);
 
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
+            resultSet = preparedStatement.executeQuery();
 
-        }
-    }
-
-    public void addReferralInvitations(int userId){
-        Connection connection = DBConnection.connection;
-        PreparedStatement preparedStatement = null;
-        try {
-            String sql = "UPDATE public.user_vk SET number_of_invitations = number_of_invitations + 1 where referral = " + userId;
-            preparedStatement = connection.prepareStatement(sql);
-
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
+            if (resultSet.next()) {
+                userId = resultSet.getInt("user_id");
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+
+        return userId;
     }
+
 
     public int getUserCount(int userId) {
         int count = 0;

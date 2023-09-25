@@ -38,7 +38,10 @@ public class RequestsService {
                     log.info("Первое сообщение");
                 } else {
                     messageDaoJdbc.addUserMessage(messageModel.getObject().getMessage().getFromId());
-                    messageDaoJdbc.addReferralMessage(messageModel.getObject().getMessage().getFromId());
+                    int userIdByReferral = messageDaoJdbc.getUserIdByReferral(messageModel.getObject().getMessage().getFromId());
+                    if (userIdByReferral>0){
+                        messageDaoJdbc.addUserMessage(userIdByReferral);
+                    }
                     log.info("увеличили сообщения");
                 }
 

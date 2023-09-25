@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CallBackController {
 
-    @PostMapping("/callBack")
+    @PostMapping("/callback")
     public String callBack(@RequestBody String requestBody){
         RequestsService service = new RequestsService();
         service.initialVerification(requestBody);
