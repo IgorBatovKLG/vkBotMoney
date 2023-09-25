@@ -20,8 +20,8 @@ public class RequestsService {
         if (messageModel.getType().equals("message_new")) {
             try {
                 if (messageModel.getObject().getMessage().getAction().getType().equals("chat_invite_user")) {
-                    messageDaoJdbc.addUserInvitations(messageModel.getObject().getMessage().getFromId());
                     messageDaoJdbc.createUser(messageModel.getObject().getMessage().getAction().getMemberId(), messageModel.getObject().getMessage().getFromId());
+                    messageDaoJdbc.addUserInvitations(messageModel.getObject().getMessage().getFromId());
 
                 }
             } catch (NullPointerException e) {
