@@ -33,7 +33,7 @@ public class BalanceService {
 
         String messageStr = decimalFormat.format(message);
         String invitationStr = decimalFormat.format(invitation);
-        apiVk.vk("Курс валют \n 1 сообщение = " + messageStr
-                + " рублей\n 1 приглашение = " + invitationStr + " рублей");
+        apiVk.vk("Курс валют \n " + "\uD83C\uDF4B" + " 1 сообщение = " + messageStr
+                + " рублей\n " + "\uD83C\uDF4B" + "1 приглашение = " + invitationStr + " рублей");
     }
 }
