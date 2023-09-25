@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 public class RequestsService {
 
     public void initialVerification(String request){
+        //
         Gson gson = new Gson();
         MessageDaoJdbc messageDaoJdbc = new MessageDaoJdbc();
         MessageModel messageModel = gson.fromJson(request, MessageModel.class);
