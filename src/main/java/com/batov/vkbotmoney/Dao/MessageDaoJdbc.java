@@ -64,14 +64,14 @@ public class MessageDaoJdbc {
         ResultSet resultSet = null;
 
         try {
-            String sql = "SELECT user_id FROM public.user_vk WHERE referral = ?";
+            String sql = "SELECT referral FROM public.user_vk where user_id = ?";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, referral);
 
             resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
-                userId = resultSet.getInt("user_id");
+                userId = resultSet.getInt("referral");
             }
         } catch (SQLException e) {
             e.printStackTrace();
