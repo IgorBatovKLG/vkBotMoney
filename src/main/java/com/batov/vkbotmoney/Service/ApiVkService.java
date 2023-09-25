@@ -10,7 +10,8 @@ import java.nio.charset.StandardCharsets;
 @Slf4j
 public class ApiVkService {
     private String accessToken = "vk1.a.FhY0KHUCjlKUWApzlrQ0Q1sfljaAlnioUYVXF-LBsMIPWmIat9GJST8bvJNUrWIS8HhS5bL7IhguHgknUxbkFXH_BfDZfesgsIbvb9Rx_9WWoZpS8WUq6sgHdWp_AeiKuEy-xcuRX6IY0TJz62nx-h68A8SypvKKLUMS4uIL9L633xBXwDLtINPC893ruNxN69Kxw0u--bWSCgR1jpj88g"; // Замените на ваш токен доступа
-    private int peer_ids = 2000000001;
+    private int peer_ids = 2000000002;
+
 
     public void vk(String message) {
         try {
