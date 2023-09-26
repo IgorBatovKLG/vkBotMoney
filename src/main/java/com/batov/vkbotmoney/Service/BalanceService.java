@@ -14,12 +14,19 @@ public class BalanceService {
         BalanceDaoJdbc balanceDaoJdbc = new BalanceDaoJdbc();
         UserModel userStats = balanceDaoJdbc.getUserStats(user_id);
         UserModel userStatsPaid = balanceDaoJdbc.getUserStatsPaid(user_id);
+        Map<String, Integer> courseNameToPriceMap = balanceDaoJdbc.getCourseNameToPriceMap();
+        Double message = Double.valueOf(courseNameToPriceMap.get("message"))/1000;
+        Double invitation = Double.valueOf(courseNameToPriceMap.get("invitation"))/1000;
+
         UserModel balance = new UserModel(
                 user_id,
                 userStats.getNumber_of_messages()-userStatsPaid.getNumber_of_messages(),
                 userStats.getNumber_of_invitations()-userStatsPaid.getNumber_of_invitations()
         );
-        apiVk.vk("Баланс пользователя @id" + user_id + "\nСообщения - " + balance.getNumber_of_messages() + ".\nПриглашения - " + balance.getNumber_of_invitations() + ".");
+        Double balanceR = (message*balance.getNumber_of_messages()) + (invitation*balance.getNumber_of_invitations());
+        DecimalFormat decimalFormat = new DecimalFormat("#.####");
+
+                apiVk.vk("Баланс пользователя @id" + user_id + "\nСообщения - " + balance.getNumber_of_messages() + ".\nПриглашения - " + balance.getNumber_of_invitations() + ".\nЧто равняется " + balanceR + " рублей!");
     }
 
     public void priceCoin(){
