@@ -43,7 +43,7 @@ public class RequestsService {
                         }
                     }
 
-                    if (messageModel.getObject().getMessage().getText().toLowerCase().equals("баланс")){
+                    if (messageModel.getObject().getMessage().getText().toLowerCase().equals("бабки")){
                         balanceService.getBalance(messageModel.getObject().getMessage().getFromId());
                     }
                     if (messageModel.getObject().getMessage().getText().toLowerCase().equals("курс")){
